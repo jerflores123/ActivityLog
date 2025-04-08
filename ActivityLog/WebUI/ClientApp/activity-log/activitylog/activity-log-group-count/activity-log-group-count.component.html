@@ -1,0 +1,41 @@
+<div cdkDrag cdkDragRootElement=".cdk-overlay-pane" class="box" *ngIf="vm">
+  <div class="header" cdkDragHandle>
+    <h3> Group Count </h3>
+    <button type="button" mat-dialog-close mat-button class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+      X
+    </button>
+  </div>
+
+  <div class="body" *ngIf="Privilege && Privilege.read_priv">
+    <div class="container">
+
+      <div class="row">
+        <div class="col">
+          <table class='table'>
+            <thead class="tableheadercontent">
+              <tr>
+                <th></th>
+                <th>Count</th>
+                <th>Action</th>
+                <!-- <th>Action</th>-->
+              </tr>
+            </thead>
+            <tbody class="tablecontent">
+              <tr *ngFor="let item of vm.groupCount">
+                <td>{{ item.group_name }}</td>
+                <td><input type="text" [(ngModel)]="item.group_counts"></td>
+                <td *ngIf="Privilege.modify_priv">
+                    <mat-icon class="btn-action" (click)="submit(item)">save</mat-icon>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <button class="btn btn-close mr-3" mat-dialog-close mat-button>Cancel</button>
+  </div>
+</div>
+
